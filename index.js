@@ -32,12 +32,12 @@ async function run() {
       try {
         const user = req.body;
         const result = await userCollection.insertOne(user);
-    //     res.json({ _id: result.insertedId });
-    //   } catch (error) {
-    //     console.error("Error:", error);
-    //     res.status(500).json({ error: "Internal Server Error" });
-    //   }
-    // });
+        res.json({ _id: result.insertedId });
+      } catch (error) {
+        console.error("Error:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
     app.delete('/users/:id', async (req, res) => {
       try {
         const userId = req.params.id;
