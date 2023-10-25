@@ -15,18 +15,18 @@ async function run() {
     await client.connect();
     console.log("Connected to MongoDB Atlas");
 
-    // const userCollection = client.db("userDB").collection("users");
-    // app.put('/users/:id', async (req, res) => {
-    //   try {
-    //     const userId = req.params.id;
-    //     const updatedUser = req.body;
-    //     const result = await userCollection.updateOne({ _id: userId }, { $set: updatedUser });
-    //     res.json({ success: result.modifiedCount > 0 });
-    //   } catch (error) {
-    //     console.error("Error:", error);
-    //     res.status(500).json({ error: "Internal Server Error" });
-    //   }
-    // });
+    const userCollection = client.db("userDB").collection("users");
+    app.put('/users/:id', async (req, res) => {
+      try {
+        const userId = req.params.id;
+        const updatedUser = req.body;
+        const result = await userCollection.updateOne({ _id: userId }, { $set: updatedUser });
+        res.json({ success: result.modifiedCount > 0 });
+      } catch (error) {
+        console.error("Error:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
     
     app.post('/users', async (req, res) => {
       try {
