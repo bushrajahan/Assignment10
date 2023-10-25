@@ -38,16 +38,16 @@ async function run() {
         res.status(500).json({ error: "Internal Server Error" });
       }
     });
-    // app.delete('/users/:id', async (req, res) => {
-    //   try {
-    //     const userId = req.params.id;
-    //     const result = await userCollection.deleteOne({ _id: userId });
-    //     res.json({ success: result.deletedCount > 0 });
-    //   } catch (error) {
-    //     console.error("Error:", error);
-    //     res.status(500).json({ error: "Internal Server Error" });
-    //   }
-    // });
+    app.delete('/users/:id', async (req, res) => {
+      try {
+        const userId = req.params.id;
+        const result = await userCollection.deleteOne({ _id: userId });
+        res.json({ success: result.deletedCount > 0 });
+      } catch (error) {
+        console.error("Error:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
     
     //read the data from database mongodb 
     app.get('/users',async(req,res)=>{
